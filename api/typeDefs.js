@@ -8,6 +8,9 @@ const typeDefs = gql`
         trip(id: ID!): Trip
         trips(userId: ID!): [Trip]
         tripsPlaces(tripId: ID!): [TripPlace]
+        
+        reviewsByUser(userId: ID!): [Review]
+        reviewPlaces(reviewId: ID!): [ReviewPlace]
 
         continents: [Continent]
         regions: [Region]
@@ -32,6 +35,23 @@ const typeDefs = gql`
     type TripPlace {
         id: ID
         tripId: ID!
+        placeId: ID!
+        place: Place
+    }
+
+    type Review {
+        id: ID
+        userId: ID!
+        placeId: ID!
+        rating: Int!
+        description: String!
+        user: User
+        reviewPlace: Place
+    }
+
+    type ReviewPlace {
+        id: ID
+        reviewId: ID!
         placeId: ID!
         place: Place
     }
@@ -79,15 +99,6 @@ const typeDefs = gql`
         id: ID
         placeId: String!
         url: String!
-    }
-
-    type Review {
-        id: ID
-        userId: ID!
-        placeId: ID!
-        rating: Int!
-        description: String!
-        user: User
     }
 
     type LoginResponse {

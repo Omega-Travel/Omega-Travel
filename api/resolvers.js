@@ -88,6 +88,9 @@ const resolvers = {
         reviews: (_, args, context, info) => {
             return Review.find({ placeId: args.placeId });
         },
+        reviewsByUser: (_, args, context, info) => {
+            return Review.find({ userId: args.userId });
+        },
         trip: (_, args, context, info) => {
             return Trip.findById(args.id);
         },
@@ -125,6 +128,14 @@ const resolvers = {
     Review: {
         user(parent) {
             return User.findById(parent.userId);
+        },
+        reviewPlace(parent) {
+            return Place.findById(parent.placeId);
+        }
+    },
+    ReviewPlace: {
+        place(parent) {
+            return Place.findById(parent.placeId);
         }
     },
     Trip: {

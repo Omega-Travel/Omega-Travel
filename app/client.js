@@ -5,7 +5,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { AsyncStorage } from "react-native";
 
 const httpLink = createHttpLink({
-  uri: "https://ui-design-react-ni58z0eiy.vercel.app/api/graphql", 
+  uri: "https://ui-design-react-h1z6htuq8.vercel.app/api/graphql", 
 });
 
 const authLink = setContext(async (_, { headers }) => {
