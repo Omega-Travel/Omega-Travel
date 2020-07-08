@@ -109,6 +109,9 @@ export default function ButtonAppBar() {
                             </Link>
                             : ''
                         }
+                        <Link to="/challenge" style={{ color: '#FFF' }} >
+                            <Button color="inherit">Challenge</Button>
+                        </Link>
                         {userId != '' ?
                             <Link to="/reviews" style={{ color: '#FFF' }} >
                                 <Button color="inherit">My Reviews</Button>

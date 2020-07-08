@@ -13,6 +13,7 @@ import Trips from "./components/Trips";
 import Trip from "./components/Trip";
 import PlaceToTrip from "./components/PlaceToTrip";
 import Reviews from "./components/Reviews";
+import Challenge from "./components/Challenge";
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/trips/add/:placeId">
             <PlaceToTrip />
           </Route>
+          <Route path="/challenge" component={Challenge} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/place/:placeId">
