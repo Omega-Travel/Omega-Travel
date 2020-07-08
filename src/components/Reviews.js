@@ -92,7 +92,7 @@ const Reviews = ({ }) => {
                                         </div>
                                     </Link>
                                     <div>
-                                        <a href={"https://twitter.com/intent/tweet/?text= " + reviewPlace.name + ', ' + description + "."} target="_blank">
+                                        <a href={"https://twitter.com/intent/tweet/?text=" + reviewPlace.name + ', ' + description + "."} target="_blank">
                                             <img src={twitter} alt="twitter share icon" style={{ float: 'right', marginLeft: '10px', maxWidth: '50px' }} />
                                         </a>
                                     </div>

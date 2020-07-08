@@ -5,31 +5,43 @@ import { Formik } from "formik";
 import Rating from '@material-ui/lab/Rating';
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
+import {
+    Switch,
+    Link,
+    useParams
+} from "react-router-dom";
 
 const REGISTER_REVIEW = gql`
   mutation registerReview($input: RegisterReview!) {
     registerReview(input: $input) {      
-      ok,
-      error,
-      review {
         userId,
         placeId,
         rating,
-        description,
-      }
+        description
     }
   }
 `;
 
 const AddReview = () => {
-    const [review, { loading, error }] = useMutation(REGISTER_REVIEW);
+    const userId = localStorage.getItem('userId');
+    let { placeId } = useParams();
+    const [review] = useMutation(REGISTER_REVIEW);
+    let history = useHistory();
 
     return (
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ placeId: placeId, rating: 0, description: '', userId: userId }}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    values.rating = Number(values.rating);
+                    review({
+                        variables: {
+                            input: values
+                        },
+                    }).then((result) => {
+                        window.history.back();
+                    });
                     setSubmitting(false);
                 }, 400);
             }}
@@ -44,13 +56,15 @@ const AddReview = () => {
                         <FormContainer>
                             <br />
                             <TextField
-                                id="outlined-multiline-static"
                                 multiline
+                                value={values.description}
+                                id="description"
                                 rows={4}
                                 variant="outlined"
+                                onChange={handleChange("description")}
                             />
                             <br />
-                            <Rating name="size-medium" defaultValue={4} />
+                            <Rating value={values.rating} id="rating" name="size-medium" onChange={handleChange("rating")}/>
                             <br />
                             <Button
                                 disabled={isSubmitting}

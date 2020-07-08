@@ -11,33 +11,6 @@ function Copyright() {
   const userId = localStorage.getItem('userId') != null;
   return (
     <div>
-      {userId != '' ?
-        <Link to="/" style={{ color: 'black' }} >
-          <Typography variant="body2" color="textSecondary" align="center">Home</Typography>
-        </Link>
-        : ''
-      }
-      {
-        userId != '' ?
-          <Link to="/reviews" style={{ color: 'black' }} >
-            <Typography variant="body2" color="textSecondary" align="center">Reviews</Typography>
-          </Link>
-          : ''
-      }
-      {
-        userId != '' ?
-          <Link to="/trips" style={{ color: 'black' }} >
-            <Typography variant="body2" color="textSecondary" align="center">Trips</Typography>
-          </Link>
-          : ''
-      }
-      {
-        userId != '' ?
-          <Link to="/login" style={{ color: 'black' }} >
-            <Typography variant="body2" color="textSecondary" align="center">Logout</Typography>
-          </Link>
-          : ''
-      }
       <Typography variant="body2" color="black" align="center">
         {'Copyright © Omega Travel'}
         {' '}
