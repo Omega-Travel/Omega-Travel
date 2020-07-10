@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 const Review = ({ name, place, rating, description }) => {
     const localStorageUserId = localStorage.getItem('userId') != null;
     const classes = useStyles();
-    var Upvote = require('react-upvote');
     return (
         <Container maxWidth="md">
             <Typography variant="h6">
