@@ -6,8 +6,6 @@ import { Alert } from '@material-ui/lab';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Spinner from 'react-bootstrap/Spinner'
 import Row from 'react-bootstrap/Row'
-import Card from 'react-bootstrap/Card'
-import styled from "styled-components";
 import twitter from "../assets/twitter.jpg";
 import {
     Switch,
@@ -43,6 +41,14 @@ const GET_REVIEWS = gql`
     }
 `;
 
+function countTotalReviews(data) {
+    var count = 0;
+    var reviews = data.data.reviewsByUser;
+    reviews.forEach(function () {
+        count += 1;
+    });
+    return count;
+}
 
 const Reviews = ({ }) => {
     const classes = useStyles();
@@ -65,6 +71,10 @@ const Reviews = ({ }) => {
             <br />
             <Typography variant="h4">
                 My reviews
+            </Typography>
+            <br />
+            <Typography variant="h5">
+                Reviews made: {countTotalReviews({ data })}
             </Typography>
             <br />
             {data.reviewsByUser.map(({ reviewPlace, rating, description }) => (

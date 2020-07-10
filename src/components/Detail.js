@@ -149,7 +149,10 @@ const Detail = () => {
                 {data.place.reviews &&
                     data.place.reviews.map(({ id, user, rating, description }) => (
                         <div key={id}>
-                            <GivenReview name={user.fullname} rating={rating} description={description} />
+                            <br />
+                            <GivenReview name={user.fullname} place={data.place.name} rating={rating} description={description} />
+                            <br />
+                            <Divider />
                         </div>
                     ))
                 }
@@ -161,7 +164,6 @@ const Detail = () => {
                     </Alert>
                 }
                 <br />
-                <Divider />
                 <br />
                 {userId !== '' ?
                     <AddReview />
